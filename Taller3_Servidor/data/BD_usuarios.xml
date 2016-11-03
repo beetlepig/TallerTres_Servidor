@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<usuarios>
+  <usuario contrasena="m" usuario="monk"/>
+  <usuario contrasena="j" usuario="jose"/>
+  <usuario contrasena="a" usuario="andres"/>
+  <usuario contrasena="m1" usuario="monk1"/>
+  <usuario contrasena="m2" usuario="monk2"/>
+  <usuario contrasena="m3" usuario="monk3"/>
+  <usuario contrasena="m4" usuario="monk4"/>
+  <usuario contrasena="e" usuario="estu"/>
+  <usuario contrasena="ss" usuario="ss"/>
+</usuarios>
