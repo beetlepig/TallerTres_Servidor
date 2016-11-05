@@ -28,7 +28,7 @@ public class ControlXMLUsuarios extends PApplet {
 			XML hijo = parseXML("<usuario usuario=\"" + usuario
 					+ "\" contrasena=\"" + contrasena + "\"></usuario>");
 			usuarios.addChild(hijo);
-			saveXML(usuarios, "../data/BD_usuarios.xml");
+			saveXML(usuarios, "data/BD_usuarios.xml");
 			agregado = true;
 		}
 		return agregado;

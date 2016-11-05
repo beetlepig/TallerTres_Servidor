@@ -2,11 +2,11 @@ import processing.core.PApplet;
 import processing.data.XML;
 
 public class ControlXMLMensajes extends PApplet {
+	
 	private XML usuarios;
 	
 
 	public ControlXMLMensajes() {
-		
 
 		try {
 			usuarios = loadXML("data/BD_mensajes.xml");
@@ -20,7 +20,7 @@ public class ControlXMLMensajes extends PApplet {
 		XML hijo = parseXML("<mensaje usuario=\"" + usuario + "\">"
 				+ mensaje + "</mensaje>");
 		usuarios.addChild(hijo);
-		saveXML(usuarios, "../data/BD_mensajes.xml");
+		saveXML(usuarios, "data/BD_mensajes.xml");
 	}
 
 }

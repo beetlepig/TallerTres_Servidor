@@ -63,7 +63,11 @@ public class ControlCliente extends Observable implements Runnable {
 			Post p= (Post) o;
 			System.out.println(p.nombreUsuario);
 			System.out.println(p.contenidoPost);
-			guardarArchivo(p.nameImage, p.imagen, p.nombreUsuario);
+			String ruta= guardarArchivo(p.nameImage, p.imagen, p.nombreUsuario);
+			System.out.println("[ POST RECIBIDO DE: " + p.nombreUsuario + " ]");
+			System.out.println("RUTA: " + ruta);
+			Post pSimplificado= new Post(p.nombreUsuario, p.fecha, p.contenidoPost, ruta);
+			jefe.update(this, pSimplificado);
 		}else if(o instanceof String){
 		
 		String mensaje = (String) o;
@@ -72,7 +76,7 @@ public class ControlCliente extends Observable implements Runnable {
 		}
 	}
 	
-	private void guardarArchivo(String nombre, byte[] buf, String usuario) throws IOException {
+	private String guardarArchivo(String nombre, byte[] buf, String usuario) throws IOException {
 		try {
 			File archivo = new File("data/" +usuario+"/" +nombre);
 			archivo.createNewFile();
@@ -81,9 +85,12 @@ public class ControlCliente extends Observable implements Runnable {
 			
 			salida.flush();
 			salida.close();
+			return archivo.getPath();
+		
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 
