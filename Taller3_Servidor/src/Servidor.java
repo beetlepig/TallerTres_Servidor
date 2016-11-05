@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
@@ -43,6 +44,18 @@ public class Servidor extends Thread implements Observer {
 			}
 		}
 	}
+	private void comprobarDirectorio(String usuario){
+		   File file = new File("data/"+usuario);
+	        boolean isDirectoryCreated = file.exists();
+
+	        if(!isDirectoryCreated){
+	            isDirectoryCreated = file.mkdirs();
+	        System.out.println("Datos del usuario "+ usuario + ": No encontrados, creando directorio");
+	        }
+	        if(isDirectoryCreated){
+	            System.out.println("Datos del usuario "+ usuario + ": Encontrados");
+	        }
+	}
 
 	@Override
 	public void update(Observable observado, Object mensajeString) {
@@ -50,7 +63,10 @@ public class Servidor extends Thread implements Observer {
 		if (notificacion.contains("login_req:")) {
 			String[] partes = notificacion.split(":");			
 			int resultadoLogin = cxmlUsuarios.validarUsuario(partes[1], partes[2]);
-			((ControlCliente)observado).enviarMensaje("login_resp:"+resultadoLogin);			
+			((ControlCliente)observado).enviarMensaje("login_resp:"+resultadoLogin);
+			if(resultadoLogin==1){
+			comprobarDirectorio(partes[1]);
+			}
 		}
 		if (notificacion.contains("signup_req:")) {
 			String[] partes = notificacion.split(":");			

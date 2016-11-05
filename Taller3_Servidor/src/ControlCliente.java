@@ -63,7 +63,7 @@ public class ControlCliente extends Observable implements Runnable {
 			Post p= (Post) o;
 			System.out.println(p.nombreUsuario);
 			System.out.println(p.contenidoPost);
-			guardarArchivo(p.nameImage, p.imagen);
+			guardarArchivo(p.nameImage, p.imagen, p.nombreUsuario);
 		}else if(o instanceof String){
 		
 		String mensaje = (String) o;
@@ -72,9 +72,9 @@ public class ControlCliente extends Observable implements Runnable {
 		}
 	}
 	
-	private void guardarArchivo(String nombre, byte[] buf) throws IOException {
+	private void guardarArchivo(String nombre, byte[] buf, String usuario) throws IOException {
 		try {
-			File archivo = new File("data/" + nombre);
+			File archivo = new File("data/" +usuario+"/" +nombre);
 			archivo.createNewFile();
 			FileOutputStream salida = new FileOutputStream(archivo);
 			salida.write(buf);
@@ -85,6 +85,8 @@ public class ControlCliente extends Observable implements Runnable {
 			e.printStackTrace();
 		}
 	}
+	
+
 
 	public void enviarMensaje(String mensaje) {
 		try {
