@@ -12,12 +12,13 @@ public class Post implements Serializable{
     public String fecha;
     public String contenidoPost;
     public byte[] imagen;
-
+    public String nameImage;
     public Post(String name, String fecha, String contenidoPost, byte[] img){
         this.nombreUsuario=name;
         this.fecha=fecha;
         this.contenidoPost=contenidoPost;
         this.imagen=img;
+        this.nameImage=nameImage;
     }
 
 }

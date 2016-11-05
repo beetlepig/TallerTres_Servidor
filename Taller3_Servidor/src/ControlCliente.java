@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.nio.file.Files;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -62,7 +63,7 @@ public class ControlCliente extends Observable implements Runnable {
 			Post p= (Post) o;
 			System.out.println(p.nombreUsuario);
 			System.out.println(p.contenidoPost);
-			guardarArchivo(p.nombreUsuario+"mirameEstoPapu.png", p.imagen);
+			guardarArchivo(p.nameImage, p.imagen);
 		}else if(o instanceof String){
 		
 		String mensaje = (String) o;
@@ -77,6 +78,7 @@ public class ControlCliente extends Observable implements Runnable {
 			archivo.createNewFile();
 			FileOutputStream salida = new FileOutputStream(archivo);
 			salida.write(buf);
+			
 			salida.flush();
 			salida.close();
 		} catch (FileNotFoundException e) {
