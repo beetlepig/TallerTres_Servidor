@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import Serializable.Post;
@@ -32,10 +33,10 @@ public class ControlXMLPost extends PApplet{
 		return agregado;
 	}
 	
-	public Vector<Post> initPostBD(){
+	public ArrayList<Post> initPostBD(){
 		//leo el xml y paso un arreglo con todos los post al servidor
 		XML[] hijos = posts.getChildren("post");
-		Vector<Post> postis=new Vector<>();
+		ArrayList<Post> postis=new ArrayList<>();
 		for (int i = 0; i < hijos.length; i++) {
 			File fil= new File(hijos[i].getString("ruta"));
 			byte[] imgSer=null;;

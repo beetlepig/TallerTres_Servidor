@@ -19,14 +19,14 @@ public class Servidor extends Thread implements Observer {
 	private ControlXMLUsuarios cxmlUsuarios;
 	private ControlXMLMensajes cxmlMensajes;
 	private ControlXMLPost cxmlPosts;
-	private Vector <Post> postes;
+	private ArrayList<Post> postes;
 
 	public Servidor() {
 		cxmlUsuarios = new ControlXMLUsuarios();
 		cxmlMensajes = new ControlXMLMensajes();
 		cxmlPosts= new ControlXMLPost();
 		clientes = new ArrayList<ControlCliente>();
-		postes=new Vector<>();
+		postes=new ArrayList<>();
 		inicializarPost();
 		System.out.println(postes.size());
 		try {
@@ -90,6 +90,11 @@ public class Servidor extends Thread implements Observer {
 			String[] partes = notificacion.split(":");			
 			boolean resultadoAgregar = cxmlUsuarios.agregarUsuario(partes[1], partes[2]);			
 			((ControlCliente) observado).enviarMensaje("signup_resp:"+(resultadoAgregar==true?1:0));			
+		}
+		if (notificacion.contains("post_req")) {
+			
+		
+			((ControlCliente) observado).enviarMensaje(postes);
 		}
 		if (notificacion.contains("cliente_no_disponible")) {
 			clientes.remove(observado);

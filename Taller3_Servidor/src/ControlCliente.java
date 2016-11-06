@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.util.Observable;
@@ -95,15 +96,17 @@ public class ControlCliente extends Observable implements Runnable {
 	
 
 
-	public void enviarMensaje(String mensaje) {
+	public void enviarMensaje(Object mensaje) {
 		try {
-			DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-			dos.writeUTF(mensaje);
+			ObjectOutputStream dos = new ObjectOutputStream(s.getOutputStream());
+			dos.writeObject(mensaje);
 			System.out.println("[ MENSAJE A ENVIADO: " + mensaje + " ]");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	
 
